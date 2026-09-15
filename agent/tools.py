@@ -185,8 +185,9 @@ def list_my_orders(ctx: AuthContext) -> dict[str, Any]:
             "ok": False,
             "error": "invalid_argument",
             "reason": (
-                "support staff have no orders of their own; "
-                "use get_order to look up a specific order"
+                "support staff have no orders of their own; use get_order to look "
+                "up a specific order, or list_shopper_orders to see the most recent "
+                "orders for a specific shopper"
             ),
         }
 
@@ -326,3 +327,44 @@ def find_order(ctx: AuthContext, query: str) -> dict[str, Any]:
         if needle in titles_by_product_id.get(order.product_id, "").lower()
     ]
     return {"ok": True, "orders": [order.to_public_dict() for order in matches[:5]]}
+
+
+def list_shopper_orders(ctx: AuthContext, shopper_id: int) -> dict[str, Any]:
+    """List one shopper's recent orders by user id. Risk tier: read.
+
+    Support staff have no orders of their own, so list_my_orders rejects them
+    and they had no way to review a customer's history at all. This tool fills
+    that gap.
+
+    Unlike list_my_orders, this one takes the account to read as an argument
+    rather than deriving it from ctx, so the role check is what keeps it safe.
+    The access matrix in SPEC.md lets support view any order, but a shopper or
+    merchant passing someone else's id would be reading outside their scope, so
+    every non-support caller is refused before any data is fetched.
+
+    Args:
+        ctx: The caller's auth context.
+        shopper_id: The user id whose orders should be listed.
+
+    Returns:
+        On success: {"ok": True, "shopper_id": int, "orders": [...],
+        "count": <len(orders)>} where each order is Order.to_public_dict(),
+        newest first, at most DEFAULT_ORDER_LIMIT records. A shopper with no
+        orders is still a success with an empty list and count zero.
+        For any caller that is not support: agent.auth.permission_denied(...).
+    """
+    if ctx.role != "support":
+        return permission_denied(
+            f"role {ctx.role} may not list another shopper's orders; only support "
+            "staff can request the order history of a specific shopper"
+        )
+
+    with db.connection() as conn:
+        orders = db.list_orders_for_user(conn, shopper_id, DEFAULT_ORDER_LIMIT)
+
+    return {
+        "ok": True,
+        "shopper_id": shopper_id,
+        "orders": [order.to_public_dict() for order in orders],
+        "count": len(orders),
+    }

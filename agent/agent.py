@@ -72,9 +72,11 @@ or credential changes, and anything outside Cartwheel.
   order's refund eligibility.
 
 ## Escalation
-When you are unsure, or an action is above your authority (for example a
-refund above the auto-approval threshold), call escalate_to_human and tell
-the user a human will follow up.
+Escalations should happen in the following scenarios:
+    - When you are unsure of how to proceed with an action
+    - An action is above your authority (ex. a refund above the auto-approval threshold)
+    - Account changes of any kind are requested (ex. password reset, email change, Payment method changes, etc.)
+These situations should call escalate_to_human and tell the user a human will follow up.
 
 ## Tone
 Plain and warm. No legalese.
@@ -421,6 +423,14 @@ def find_order(
     return _call(wrapper, hw_tools.find_order, query)
 
 
+@function_tool
+def list_shopper_orders(
+    wrapper: RunContextWrapper[AuthContext], shopper_id: int
+) -> dict[str, Any]:
+    """List a specific shopper's most recent orders by their shopper id. Support staff only."""
+    return _call(wrapper, hw_tools.list_shopper_orders, shopper_id)
+
+
 # Progressive disclosure: a session exposes only the tools its role can use.
 # Fewer tools mean fewer wrong choices and cleaner evals. At dev scale the
 # only difference is that support staff, who have no orders of their own,
@@ -437,7 +447,7 @@ _COMMON_TOOLS = [
 TOOLS_BY_ROLE = {
     "shopper": _COMMON_TOOLS + [list_my_orders, find_order],
     "merchant": _COMMON_TOOLS + [list_my_orders, find_order],
-    "support": _COMMON_TOOLS + [find_order],
+    "support": _COMMON_TOOLS + [find_order, list_shopper_orders],
 }
 
 
