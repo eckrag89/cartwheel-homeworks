@@ -2,6 +2,24 @@
 
 Cartwheel is the support agent used throughout "Evaluating and Improving AI Agents." Students complete the starter code and use the same repository for later evaluation exercises.
 
+## Before each session: sync Erik's fork with the course repo
+
+This clone is Erik's fork. `origin` is `eckrag89/cartwheel-homeworks` (where Erik pushes his homework). `upstream` is `ai-evals-course/cartwheel-homeworks` (the course repo, push disabled). The course releases assignments incrementally, so check for new upstream work at the start of every session, before reading handouts or writing code.
+
+```bash
+git fetch upstream
+git log --oneline HEAD..upstream/main
+```
+
+If upstream is ahead, report what changed and ask Erik before syncing. Once he agrees:
+
+```bash
+gh repo sync eckrag89/cartwheel-homeworks --source ai-evals-course/cartwheel-homeworks
+git pull --ff-only origin main
+```
+
+Never force a sync that would discard Erik's committed homework. If the fast-forward fails because his work has diverged, stop and show him the conflict rather than resetting or rebasing on your own. Re-read any handout that the sync changed.
+
 ## Find the relevant instructions
 
 - Read [README.md](README.md) for setup and commands. Run commands from the repository root.
