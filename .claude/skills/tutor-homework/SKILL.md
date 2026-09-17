@@ -82,9 +82,68 @@ unprompted.
 `upstream` is the course repo, and assignments are released incrementally. Check for new upstream work
 before reading handouts.
 
-**Read the handout and follow it.** The handout is the checklist, not Claude's idea of the task. Some
-handouts open with their own walkthrough prompt; when Erik invokes one, follow its pacing and stop at
-its review points.
+**Read the handout and follow it.** The handout is the checklist, not Claude's idea of the task.
+
+## Starting a new assignment: extract the plan from the handout
+
+Every handout carries the same kinds of information, but in different places and with different levels
+of detail. Before any work, read the whole handout, including its walkthrough prompt, and extract the
+items below into the progress note. Then show Erik the extracted checklists once so he can add or cut
+items. After that, the note is the plan.
+
+**1. Read the walkthrough prompt as a source, not a script.** Most handouts include a "Working through
+the assignment with a coding agent" prompt. Mine it for content: the files and skills it says to read,
+the concepts it names, the review points where the student decides, the diagrams it suggests, and any
+guardrails. Do not adopt its pacing. It is written for a student with no programming background who
+approves every command, and this skill's rules override that.
+
+**2. Build the preparation reading checklist.** Collect every source Erik should read before the first
+part: the Preparation section's file list, anything the walkthrough prompt says to read (`SPEC.md`,
+a scenario skill, a sub-directory `AGENTS.md`), external links, and course skills named in the root
+`AGENTS.md` for that assignment. Give each item a path, a line where useful, or a URL. Erik checks them
+off. Do not start the first part until every item is checked. Pointing at the list is fine.
+Summarizing the files is not (rule 4).
+
+**3. Build the concept checklist.** Use the concepts the walkthrough prompt names when it lists them.
+When it names few or none, infer them from the vocabulary the parts depend on, and mark the inferred
+ones as proposals for Erik to confirm. Put each concept next to the part where it first matters. Check
+one off only when Erik has explained it in his own words or applied it correctly (see "Wrapping up a
+concept"). Claude explaining it does not count. Raise each concept when the work reaches it, not all
+up front.
+
+**4. Sort the work into concepts and plumbing.** Concepts get depth, and plumbing gets a checklist.
+Concepts are the eval ideas the assignment teaches. Plumbing is the infrastructure needed to run it:
+Docker, servers, ports, tokens, environment variables, installs, seeding, patches. Apply the four rules
+at full strength to concepts. For plumbing, give Erik the steps plainly, run them, and fix what breaks.
+Do not quiz him on it, ask for predictions about it, or make him derive setup commands. Check the
+environment for plumbing blockers early, such as a missing Docker install, so he can fix them in
+parallel.
+
+**5. Record review points and guardrails.** List every point where the handout says the student
+decides, reviews, or labels. Claude stops at each one. Also record hard constraints, such as approval
+before a paid batch, or no test predictions before the judge is frozen. These hold for the whole
+assignment.
+
+**6. Build the deliverable checklist.** Pull from "Expected work", every part's required outputs,
+"Files to commit", and the Video bullets. Include minimum counts, like at least five traces or at least
+100 reviewed traces, and the exact tests the handout names.
+
+**7. Note dependencies and shortcuts.** Record which earlier homework this one builds on and whether
+that work exists. Later handouts ship reference patches for students who skipped an assignment (for
+example `homework/module-1/hw2-reference.patch`). These are answer keys. Do not read past their header
+or apply one while Erik is doing that assignment himself. Point out that the patch exists so he can
+avoid it too.
+
+How this varies across the handouts so far:
+
+| Handout | Concepts named in prompt | Preparation | Notable extras |
+| --- | --- | --- | --- |
+| HW2 | Four, listed explicitly | File list plus OTel link | Docker needed for Part E; answer-key patch in repo |
+| HW3 | Five, plus three review points and two diagrams | Setup commands plus `SPEC.md` and scenario skill | Human review stops; depends on HW2 endpoints |
+| HW4 | Three, in one clause | Only a fallback patch | Error-discovery skill on GitHub; external tool |
+| HW5 | None; infer them (splits, TPR/TNR, intervals, freezing) | No section; a Skills install table instead | Paid-batch approval; hide test predictions until freeze |
+
+## Working through each step
 
 **One step at a time.** One question per turn. Do the technical work for that step, show the real
 result, then move to the next thing that needs his input. Do not stack a permission question onto
@@ -111,8 +170,9 @@ tried — with secrets removed.
 ## Keep a progress note
 
 Maintain a local progress note (e.g. `hw1-progress.md`, excluded via `.git/info/exclude` so it stays
-out of submissions). It holds current status, the next step, a live checklist of every deliverable,
-and an evidence log. Update the status in place rather than appending a history of stale next steps.
+out of submissions). It holds current status, the next step, and everything extracted at the start of the
+assignment: the preparation reading checklist, the concept checklist, review points and guardrails,
+dependencies, and a live checklist of every deliverable. It ends with an evidence log. Update the status in place rather than appending a history of stale next steps.
 Keep unfinished deliverables visible — including ones that are easy to forget, like an extra tool or
 the video.
 
@@ -127,11 +187,21 @@ keep unverified deliverables marked pending. Do not mark a recording complete un
 Use `--runxfail` when running homework tests. Without it, unimplemented functions report as `xfailed`
 and the run looks green.
 
+**An assignment is done** only when every file in the handout's "Files to commit" list exists and
+every check the handout names has passed. Otherwise it is not done. Unfinished items stay open in
+the progress note, and the video stays open until Erik has recorded it.
+
 ## Wrapping up a concept
 
 Do not ask "does that make sense?" — people cannot reliably self-assess that. Move on when Erik has
 explained something in his own words, connected an example to the concept, or applied it to a new
 case. Those are the signals.
+
+**Use diagrams when something is confusing.** If Erik seems unsure, gets a concept partly wrong, or
+his explanation leaves a gap, draw a text diagram to lay out the concept in detail. Examples are the
+path a request takes through the system, or the parent and child structure of a trace. Build it from
+the real files and outputs, not generic boxes. Diagrams are a tool for resolving confusion. They do
+not replace his first attempt, so let him try to explain before drawing one.
 
 ## Closing retrospective
 
