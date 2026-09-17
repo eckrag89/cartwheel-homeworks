@@ -134,6 +134,28 @@ example `homework/module-1/hw2-reference.patch`). These are answer keys. Do not 
 or apply one while Erik is doing that assignment himself. Point out that the patch exists so he can
 avoid it too.
 
+**8. Break the work into Todoist tasks.** Erik tracks each assignment in Todoist, and the phases
+above are what he wants to see there. Before the first part, search Todoist for a parent task for
+this homework rather than asking Erik for a link — he usually created one already, and searching
+saves him a step. Match on the assignment ("homework 4", "HW4") together with the course work it
+belongs to (Cartwheel, evals, the course project), then name the task found and ask him to confirm
+it, since a wrong parent buries eight subtasks somewhere he will not look. Offer to create one only
+when the search comes up empty. Then propose one subtask per phase — the preparation reading, the plumbing
+setup, each part of the handout, and the video — and show the list for review before creating
+anything, because the phase split is his call and a wrong list is tedious to clean up. What worked in
+HW3:
+
+- Task names are plain actions in the style of his existing tasks ("Run the 30-scenario pilot and
+  review at least 10 results"), not deliverable lists. He reads the handout for detail.
+- No descriptions. The handout and the progress note already carry the detail, and copying it into
+  Todoist creates a second place to keep current.
+- No due dates and no deadlines. The parent task carries the real commitment, and eight dated
+  subtasks become eight overdue subtasks the next morning.
+- No duration at creation either. Estimates live in the progress note's table, checked against the
+  handout's own time estimate; the Todoist duration field is reserved for the actual total written
+  when the phase completes. Todoist does accept a duration on an undated task, which is what lets
+  that actual be recorded without adding a date.
+
 How this varies across the handouts so far:
 
 | Handout | Concepts named in prompt | Preparation | Notable extras |
@@ -167,12 +189,32 @@ the conflict and ask him to reconsider.
 you stay stuck, draft a short message for the course Discord with the step, the error, and what was
 tried — with secrets removed.
 
+## Tracking the work in Todoist
+
+The Todoist tasks and the progress note hold different halves of the tracking, so neither has to be
+reconciled against the other:
+
+- **Todoist holds the clock.** Start and end times live there and nowhere else. Erik marks a phase
+  starting by giving that one subtask a due date and time, so a dated subtask mid-assignment is a
+  started phase, not a stray deadline to strip. When a phase spans
+  more than one sitting, Erik adds a session subtask beneath its subtask — "session 1 start-end",
+  "session 2 start-end". This is occasional rather than routine, but when those appear they are his
+  time records: leave them in place and do not read the extra nesting as a mistake to tidy up.
+- **The progress note holds the plan.** Its tracking table carries one row per phase with the
+  Todoist link, the estimate, the actual total time, and a done box. No start column.
+
+As each phase finishes, offer to close it out: write the actual total onto the Todoist task's
+duration, complete the task, and fill in the row. Offer rather than assume, because Erik may still be
+mid-review on something that looks finished from Claude's side, and completing his task for him moves
+the tracking out of his hands. Where a phase ends on a judgment that is his — a review point, the
+video — the task stays open until he says it is done.
+
 ## Keep a progress note
 
 Maintain a local progress note (e.g. `hw1-progress.md`, excluded via `.git/info/exclude` so it stays
 out of submissions). It holds current status, the next step, and everything extracted at the start of the
-assignment: the preparation reading checklist, the concept checklist, review points and guardrails,
-dependencies, and a live checklist of every deliverable. It ends with an evidence log. Update the status in place rather than appending a history of stale next steps.
+assignment: the Todoist tracking table, the preparation reading checklist, the concept checklist,
+review points and guardrails, dependencies, and a live checklist of every deliverable. It ends with an evidence log. Update the status in place rather than appending a history of stale next steps.
 Keep unfinished deliverables visible — including ones that are easy to forget, like an extra tool or
 the video.
 
