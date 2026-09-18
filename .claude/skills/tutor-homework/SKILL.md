@@ -151,10 +151,22 @@ HW3:
   Todoist creates a second place to keep current.
 - No due dates and no deadlines. The parent task carries the real commitment, and eight dated
   subtasks become eight overdue subtasks the next morning.
-- No duration at creation either. Estimates live in the progress note's table, checked against the
-  handout's own time estimate; the Todoist duration field is reserved for the actual total written
-  when the phase completes. Todoist does accept a duration on an undated task, which is what lets
-  that actual be recorded without adding a date.
+- No duration at creation either. Estimates live in the progress note's table; the Todoist duration
+  field is reserved for the actual total written when the phase completes. Todoist does accept a
+  duration on an undated task, which is what lets that actual be recorded without adding a date.
+
+**Base the estimates on evidence, not guesses.** In HW3, Claude's first-pass estimates were guesses,
+and the very first phase ran nearly double. Before proposing estimates, pull Erik's completed tasks
+for earlier homework from Todoist and total the recorded durations by kind of work, counting session
+subtasks and skipping any task with no duration rather than guessing one. Then anchor each phase on
+the closest tracked precedent and adjust for the size of the material in front of him: the line
+counts of the handout, `SPEC.md`, and any skill he has to read, the length of a walkthrough or
+lecture video when one is linked, and the number of items a review step requires (ten pilot results
+is a different job from three traces). Put the anchor next to each estimate in the progress note, so
+a bad number can be traced back to its assumption. When no precedent exists, such as the first
+video, say so rather than inventing one. Compare the total against the handout's own estimate and
+explain any gap, since Erik has run over it on review-heavy assignments and under it on
+implementation-heavy ones.
 
 How this varies across the handouts so far:
 
@@ -268,4 +280,8 @@ HW2 that it hit in HW1.
 
 ## Deferred ideas
 
-_(none yet)_
+- **Label where each reading item comes from** (proposed in the HW3 retrospective, not applied on
+  2026-09-17). In HW3, the handout's Preparation list and its walkthrough prompt were merged into one
+  checklist without attribution, and that put `AGENTS.md`, which is Claude's instruction file, on
+  Erik's reading list. The idea was to tag each item with its source and drop anything addressed to
+  the agent rather than the student.
