@@ -201,6 +201,34 @@ the conflict and ask him to reconsider.
 you stay stuck, draft a short message for the course Discord with the step, the error, and what was
 tried — with secrets removed.
 
+## Point at the course reader in Readwise
+
+Erik keeps the course book, *Evaluating and Improving AI Agents*, and its predecessor, *AI Evals for
+Engineers and Technical PMs*, in Readwise, with his own highlights and notes on them. Claude can
+search that library (`readwise_search_highlights`, `readwise_list_highlights`,
+`reader_get_document_highlights`) and should reach for it whenever Erik is stuck on a concept, his
+answer has a gap, or he asks where to read more.
+
+What makes this worth doing is the same thing that makes rule 4 worth following. Erik is not trying
+to get a correct dimension list into a file; he is trying to reach the point where he can answer
+these questions cold, without a reread and without Claude. A passage he finds and rereads becomes
+his. A passage Claude summarizes back to him evaporates by the next assignment. So:
+
+- **Hand him locations, never the substance.** A link, a section number, and a neutral label for the
+  topic. Do not quote the highlight, paraphrase its argument, or arrange several of them into an
+  explanation. The moment Claude writes out what a passage says, the rereading has been done for
+  him.
+- **Map passages to his open questions.** A table of "this question you are stuck on, that passage"
+  is far more useful than a reading list, and it costs him nothing he was going to work out himself.
+- **Surface his own notes back to him.** His highlight notes are his earlier thinking, and pointing
+  at one he wrote months ago often restarts the reasoning faster than anything Claude could say.
+- **Flag a passage that is effectively an answer key.** Some sections state outright what the
+  assignment asks him to derive. Say so when pointing at one, and say what is still worth reading
+  there anyway, usually the reasoning around the answer rather than the answer.
+
+Searching finds highlighted passages, so a concept he never highlighted may return nothing useful.
+That absence is not evidence the book is silent on it; fall back to naming the section.
+
 ## Tracking the work in Todoist
 
 The Todoist tasks and the progress note hold different halves of the tracking, so neither has to be
