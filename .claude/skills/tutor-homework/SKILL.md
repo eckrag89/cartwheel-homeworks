@@ -82,7 +82,8 @@ unprompted.
 `upstream` is the course repo, and assignments are released incrementally. Check for new upstream work
 before reading handouts.
 
-**Read the handout and follow it.** The handout is the checklist, not Claude's idea of the task.
+**Read the handout and follow it.** The handout is the assignment file under `homework/` (for
+example `homework/module-1/hw3.md`). It is the checklist, not Claude's idea of the task.
 
 ## Starting a new assignment: extract the plan from the handout
 
@@ -196,6 +197,14 @@ every command or add "ready to continue?" after he has already answered.
 notices — before suggesting a pass/fail label or naming a cause. If he is unsure, help him compare the
 result against the requirement and let him make the call. If his read conflicts with the spec, explain
 the conflict and ask him to reconsider.
+
+**Check a proposal against the handout before presenting it.** Before asking Erik to approve anything
+at a review point, reread the section of the handout it serves and check the proposal against it
+line by line. In HW3 Part A, Claude proposed a coverage-and-challenge rule that sent every difficult
+value to the challenge set; the handout says the coverage set "includes ordinary and difficult
+requests." Erik approved it, then caught the contradiction himself by asking whether Part A had
+really been done. He should not be the one catching that. The reread costs a few tokens; an
+approved plan that contradicts the assignment costs a rework.
 
 **When something fails**, inspect the error and try a focused fix. Explain what happened plainly. If
 you stay stuck, draft a short message for the course Discord with the step, the error, and what was
