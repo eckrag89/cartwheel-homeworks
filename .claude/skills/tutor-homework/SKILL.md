@@ -82,6 +82,15 @@ unprompted.
 `upstream` is the course repo, and assignments are released incrementally. Check for new upstream work
 before reading handouts.
 
+**Resume from the progress note when one exists.** Before anything else, look for the assignment's
+progress note (e.g. `hw3-progress.md`). If it exists, the assignment is already set up: the plan is
+extracted, the checklists exist, and the Todoist tasks are created. Read the note end to end and
+continue from its status. Do not re-run "Starting a new assignment" below, and do not create Todoist
+tasks, because a second pass duplicates the tasks and rebuilds checklists Erik has already edited.
+Decisions recorded in the note (approved plans, review outcomes) stand unless Erik reopens them. In
+HW3, Erik moved mid-assignment to a fresh session because of context size, and the handoff prompt
+had to spell this out.
+
 **Read the handout and follow it.** The handout is the assignment file under `homework/` (for
 example `homework/module-1/hw3.md`). It is the checklist, not Claude's idea of the task.
 
