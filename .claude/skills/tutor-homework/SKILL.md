@@ -255,9 +255,20 @@ reconciled against the other:
 - **Todoist holds the clock.** Start and end times live there and nowhere else. Erik marks a phase
   starting by giving that one subtask a due date and time, so a dated subtask mid-assignment is a
   started phase, not a stray deadline to strip. When a phase spans
-  more than one sitting, Erik adds a session subtask beneath its subtask — "session 1 start-end",
-  "session 2 start-end". This is occasional rather than routine, but when those appear they are his
-  time records: leave them in place and do not read the extra nesting as a mistake to tidy up.
+  more than one sitting, Erik adds a session subtask beneath its subtask — "session 1", "session 2".
+  This is occasional rather than routine, but when those appear they are his time records: leave them
+  in place and do not read the extra nesting as a mistake to tidy up.
+
+  **A session's times are Todoist fields, never text in its name.** The session subtask is named
+  "session 1" and carries the sitting's start as its due date and time; when the sitting ends, its
+  length goes in the duration field. Writing the span into the name ("session 1 10:05-13:00") leaves
+  Todoist with no time it can read, so it sorts and reminds as an undated task; Erik had to redo one
+  in HW3. When the phase itself is a dated task and the sessions take over the clock, clear the
+  phase task's due date, which also clears its duration. Two quirks of the Todoist tool: it has no
+  way to clear a duration on its own (`0m` and `remove` are both rejected), and a task's duration
+  survives in its response even after the due date is gone, so re-fetch rather than trust that
+  payload. Never set a placeholder duration on a session that has just started; leave the field
+  empty until the sitting ends and its real length is known.
 - **The progress note holds the plan.** Its tracking table carries one row per phase with the
   Todoist link, the estimate, the actual total time, and a done box. No start column.
 
